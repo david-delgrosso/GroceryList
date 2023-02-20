@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import ItemForm from './ItemForm'
-import { Card } from "react-bootstrap"
 import { Accordion } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './Item.css'
 
 
-const Section = ({ section, index }) => {
+const Section = ({ section, index, onSectionUpdate }) => {
     const [items, setItems] = useState([...section.items])
+
+    useEffect(() => {
+        onSectionUpdate(section.id, items)
+    }, [items])
 
     const addItem = item => {
         const newItems = [...items, item]

@@ -4,24 +4,34 @@ import SectionList from './SectionList'
 import '../App.css'
 
 const Main = () => {
-    const [sections, setSections] = useState(() => {
-      const savedSections = localStorage.getItem("sections")
-      return savedSections !== null ? JSON.parse(savedSections) : []
+  const [sections, setSections] = useState(() => {
+    const savedSections = localStorage.getItem("sections")
+    return savedSections !== null ? JSON.parse(savedSections) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem("sections", JSON.stringify(sections))
+  }, [sections])
+
+  const addSection = section => {
+    const newSections = [...sections, section]
+    setSections(newSections)
+  }
+
+  const updateSection = (id, newItems) => {
+    let updatedSections = sections.map(section => {
+      if (section.id == id) {
+        section.items = newItems
+      }
+      return section
     })
+    setSections(updatedSections)
+  }
 
-    useEffect(() => {
-      localStorage.setItem("sections", JSON.stringify(sections))
-    }, [sections])
-
-    const addSection = section => {
-        const newSections = [...sections, section]
-        setSections(newSections)
-    }
-
-    return (
+  return (
     <div className="container">
       <SectionForm onSubmit={addSection} />
-      <SectionList sections={sections} />
+      <SectionList sections={sections} onSectionUpdate={updateSection} />
     </div>
   )
 }
