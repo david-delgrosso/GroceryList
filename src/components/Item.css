@@ -20,3 +20,15 @@
     width: 50%;
     height: 1.5rem;
 }
+
+.delete-item-button {
+    background-color: #3776eb;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    width: auto;
+    height: 1.5rem;
+    float: right;
+}

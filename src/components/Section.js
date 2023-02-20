@@ -9,12 +9,20 @@ const Section = ({ section, index, updateSection, deleteSection }) => {
     const [items, setItems] = useState([...section.items])
 
     useEffect(() => {
+        console.log(items)
         updateSection(section.id, items)
     }, [items])
 
     const addItem = item => {
         const newItems = [...items, item]
         setItems(newItems)
+    }
+
+    const handleItemDelete = (e,id) => {
+        e.stopPropagation();
+        setItems((prev) => {
+            return prev.filter(item => item.id !== id)
+        })
     }
 
     const clickItem = (id) => {
@@ -31,9 +39,6 @@ const Section = ({ section, index, updateSection, deleteSection }) => {
         deleteSection(section.id)
     }
 
-    // {item.need ? "" : "complete"}
-    console.log(section.items)
-
     return (
         <>
             <Accordion.Item eventKey={index}>
@@ -44,6 +49,7 @@ const Section = ({ section, index, updateSection, deleteSection }) => {
                             items.map((item) => (
                                 <ListGroup.Item key={item.id} as="li" className={item.need ? "" : "complete"} onClick={() => clickItem(item.id)} >
                                     {item.name}
+                                    <button className="delete-item-button" onClick={(e) => handleItemDelete(e, item.id)}>Delete</button>
                                 </ListGroup.Item>
                             ))
                         }
