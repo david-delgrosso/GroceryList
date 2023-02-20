@@ -18,6 +18,11 @@ const Main = () => {
     setSections(newSections)
   }
 
+  const deleteSection = id => {
+    const removeSection = [...sections].filter(section => section.id !== id)
+    setSections(removeSection)
+  }
+
   const updateSection = (id, newItems) => {
     let updatedSections = sections.map(section => {
       if (section.id == id) {
@@ -31,7 +36,7 @@ const Main = () => {
   return (
     <div className="container">
       <SectionForm onSubmit={addSection} />
-      <SectionList sections={sections} onSectionUpdate={updateSection} />
+      <SectionList sections={sections} updateSection={updateSection} deleteSection={deleteSection} />
     </div>
   )
 }

@@ -1,4 +1,22 @@
 .complete {
-    background-color: rgb(160, 212, 160);
-    text-decoration: line-through;
+    background-color: rgb(160, 212, 160) !important;
+    text-decoration: line-through !important;
+}
+
+.delete-section-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.delete-section-button {
+    background-color: #db1414;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.6rem;
+    cursor: pointer;
+    width: 50%;
+    height: 1.5rem;
 }

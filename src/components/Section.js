@@ -5,11 +5,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import './Item.css'
 
 
-const Section = ({ section, index, onSectionUpdate }) => {
+const Section = ({ section, index, updateSection, deleteSection }) => {
     const [items, setItems] = useState([...section.items])
 
     useEffect(() => {
-        onSectionUpdate(section.id, items)
+        updateSection(section.id, items)
     }, [items])
 
     const addItem = item => {
@@ -27,24 +27,36 @@ const Section = ({ section, index, onSectionUpdate }) => {
         setItems(updatedItems)
     }
 
+    const handleSectionDelete = () => {
+        deleteSection(section.id)
+    }
+
+    // {item.need ? "" : "complete"}
+    console.log(section.items)
+
     return (
-        <Accordion.Item eventKey={index}>
-            <Accordion.Header>{section.name}</Accordion.Header>
-            <Accordion.Body>
-                <ListGroup as="ul">
-                    {
-                        items.map((item) => (
-                            <ListGroup.Item as="li" className={item.need ? "" : "complete"} onClick={() => clickItem(item.id)} >
-                                {item.name}
-                            </ListGroup.Item>
-                        ))
-                    }
-                    <ListGroup.Item as="li">
-                        <ItemForm onSubmit={addItem} />
-                    </ListGroup.Item>
-                </ListGroup>
-            </Accordion.Body>
-        </Accordion.Item>
+        <>
+            <Accordion.Item eventKey={index}>
+                <Accordion.Header>{section.name}</Accordion.Header>
+                <Accordion.Body>
+                    <ListGroup as="ul">
+                        {
+                            items.map((item) => (
+                                <ListGroup.Item key={item.id} as="li" className={item.need ? "" : "complete"} onClick={() => clickItem(item.id)} >
+                                    {item.name}
+                                </ListGroup.Item>
+                            ))
+                        }
+                        <ListGroup.Item as="li">
+                            <ItemForm onSubmit={addItem} />
+                        </ListGroup.Item>
+                    </ListGroup>
+                    <div className="delete-section-button-div">
+                        <button className="delete-section-button" onClick={handleSectionDelete} >Delete Section</button>
+                    </div>
+                </Accordion.Body>
+            </Accordion.Item>
+        </>
     )
 }
 
