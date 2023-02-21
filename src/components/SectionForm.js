@@ -1,4 +1,3 @@
-import { unstable_useId } from '@mui/material';
 import React, { useState } from 'react'
 import './Form.css'
 import uuid from 'react-uuid';
@@ -17,7 +16,6 @@ const SectionForm = (props) => {
             name: value,
             items: []
         })
-        console.log(`Submitted value: ${value}`);
         setValue('');
     };
 

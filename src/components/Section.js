@@ -9,7 +9,6 @@ const Section = ({ section, index, updateSection, deleteSection }) => {
     const [items, setItems] = useState([...section.items])
 
     useEffect(() => {
-        console.log(items)
         updateSection(section.id, items)
     }, [items])
 

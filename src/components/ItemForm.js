@@ -16,7 +16,6 @@ const ItemForm = (props) => {
             name: value,
             need: true
         })
-        console.log(`Submitted value: ${value}`);
         setValue('');
     };
 

@@ -25,7 +25,7 @@ const Main = () => {
 
   const updateSection = (id, newItems) => {
     let updatedSections = sections.map(section => {
-      if (section.id == id) {
+      if (section.id === id) {
         section.items = newItems
       }
       return section

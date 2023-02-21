@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Section from './Section'
 import { Accordion } from 'react-bootstrap';
 
