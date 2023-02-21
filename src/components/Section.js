@@ -10,7 +10,7 @@ const Section = ({ section, index, updateSection, deleteSection }) => {
 
     useEffect(() => {
         updateSection(section.id, items)
-    }, [items])
+    }, [items, section, updateSection])
 
     const addItem = item => {
         const newItems = [...items, item]
