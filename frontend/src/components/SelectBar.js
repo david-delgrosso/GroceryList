@@ -71,7 +71,7 @@ const SelectBar = ({ updateParentItemValue, updateParentSectionValue }) => {
     useEffect(() => {
         const resultsTemp = []
         for (let i = 0; i < items.length; i++) {
-            if (items[i].name.includes(value)) {
+            if (items[i].name.includes(value.toLowerCase())) {
                 resultsTemp.push(items[i])
             }
         }
