@@ -5,6 +5,7 @@ import { useTheme, styled, Typography, Drawer, Button, List, ListItem, Container
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     background: theme.palette.background.nav,
@@ -29,6 +30,15 @@ const StyledTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledDrawerIcon = styled(MenuIcon)(({ theme }) => ({
+    color: theme.palette.accent,
+    fontSize: "2rem !important",
+    zIndex: "3 !important",
+}));
+
+const StyledDrawerCloseIcon = styled(CloseIcon)(({ theme }) => ({
+    position: "fixed",
+    top: "12px",
+    right: "12px",
     color: theme.palette.accent,
     fontSize: "2rem !important",
     zIndex: "3 !important",
@@ -121,6 +131,9 @@ function Navbar({ updatePage }) {
                 open={isOpen}
                 onClose={toggleDrawer}
             >
+                <Button onClick={toggleDrawer}>
+                    <StyledDrawerCloseIcon />
+                </Button>
                 <List>
                     <StyledMenuItem sx={{ justifyContent: "center" }}>
                         <Button sx={{ color: MuiTheme.palette.accent }} onClick={toggleTheme}>
