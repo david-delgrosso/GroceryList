@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     background: theme.palette.background.nav,
-    color: theme.palette.accent
+    color: theme.palette.accent,
 }));
 
 export const StyledContainer = styled(Container)({
@@ -41,7 +41,7 @@ const StyledDrawerCloseIcon = styled(CloseIcon)(({ theme }) => ({
     right: "12px",
     color: theme.palette.accent,
     fontSize: "2rem !important",
-    zIndex: "3 !important",
+    zIndex: "4 !important",
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
@@ -54,7 +54,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
         textAlign: "center",
         justifyContent: "flex-start",
         color: theme.palette.text.primary,
-        zIndex: "2 !important",
+        zIndex: "1 !important",
         paddingTop: "20%"
     },
 }));
@@ -99,15 +99,15 @@ function Navbar({ updatePage }) {
         updatePage("recipes")
     }
 
-    const handleAddItemClick = () => {
+    const handleManageItemsClick = () => {
         toggleDrawer()
-        //updatePage("additem")
+        updatePage("manageitems")
     }
 
-    const handleAddRecipeClick = () => {
-        toggleDrawer()
-        //updatePage("addrecipe")
-    }
+    // const handleAddRecipeClick = () => {
+    //     toggleDrawer()
+    //     //updatePage("addrecipe")
+    // }
 
     const drawer = (
         <>
@@ -147,10 +147,10 @@ function Navbar({ updatePage }) {
                         <StyledDrawerText onClick={handleRecipesClick}>Recipes</StyledDrawerText>
                     </StyledMenuItem>
                     <StyledMenuItem>
-                        <StyledDrawerText>Add Item</StyledDrawerText>
+                        <StyledDrawerText onClick={handleManageItemsClick}>Manage Items</StyledDrawerText>
                     </StyledMenuItem>
                     <StyledMenuItem>
-                        <StyledDrawerText>Add Recipe</StyledDrawerText>
+                        <StyledDrawerText>Manage Recipes</StyledDrawerText>
                     </StyledMenuItem>
                 </List>
             </StyledDrawer>

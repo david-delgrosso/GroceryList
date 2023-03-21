@@ -26,7 +26,7 @@ export const StyledContainer = styled(Container)({
     padding: "0"
 });
 
-const SearchBar = ({toggleRerender}) => {
+const SearchBar = ({ toggleRerender }) => {
     const [value, setValue] = useState('');
     const [results, setResults] = useState([]);
     const [items, setItems] = useState([]);
@@ -108,6 +108,7 @@ const SearchBar = ({toggleRerender}) => {
                     <div style={{ alignSelf: "center ", marginLeft: "1rem", color: MuiTheme.palette.accent }}>
                         <HiOutlineRefresh size={32} onClick={() => handleRefresh()} />
                     </div>
+
                 </div>
                 <List sx={{ width: "100%" }}>
                     {

@@ -21,28 +21,28 @@ const StyledListItemText = styled(ListItemText)(() => ({
 const Item = ({ itemIn, sectionName }) => {
     const [item, setItem] = useState({})
 
-    useEffect(() => {setItem(itemIn)}, [itemIn])
+    useEffect(() => { setItem(itemIn) }, [itemIn])
 
-    const clickItem = (id) => {
-        const urlstr = "http://127.0.0.1:8000/api/item/" + String(id)
+    const clickItem = () => {
+        const urlstr = "http://127.0.0.1:8000/api/item/" + String(item.id)
         axios.patch(urlstr, { need: !item.need })
-            .then(response => {
-                setItem(response.data)
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    }
+          .then(response => {
+            setItem(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          });
+      }
 
     return (
         <StyledListItem
             key={item.id}
             need={item.need}
             as="li"
-            onClick={() => clickItem(item.id)}
+            onClick={clickItem}
         >
             <StyledListItemText primary={item.name} secondary={sectionName} />
-            
+
         </StyledListItem>
     )
 }

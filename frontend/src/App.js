@@ -7,6 +7,7 @@ import { ThemeContext } from "./ThemeContext";
 import './App.css'
 import { ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./Theme";
+import { PageContext } from "./PageContext";
 
 function App() {
   const [theme, setTheme] = useState("light")
@@ -18,7 +19,9 @@ function App() {
       <ThemeProvider theme={muiTheme}>
         <div>
           <Navbar updatePage={setPage} />
-          <Main page={page} />
+          <PageContext.Provider value={page}>
+            <Main />
+          </PageContext.Provider>
           <Footer />
         </div>
       </ThemeProvider >
