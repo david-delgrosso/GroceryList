@@ -4,15 +4,17 @@ import axios from "axios"
 import List from '@mui/material/List';
 import { HiOutlineRefresh } from 'react-icons/hi'
 import { RerenderContext } from '../RerenderContext'
+import { UrlContext } from '../UrlContext';
 import { useTheme } from '@mui/material'
 
 const ItemList = ({ section }) => {
     const [items, setItems] = useState([])
     const rerender = useContext(RerenderContext)
+    const ip = useContext(UrlContext)
     const MuiTheme = useTheme()
 
     const fetchItems = () => {
-        axios.get("http://127.0.0.1:8000/api/items/", {
+        axios.get(String(ip) + "api/items/", {
             params: {
                 id: section.id
             }
@@ -40,7 +42,7 @@ const ItemList = ({ section }) => {
             });
     }
 
-    useEffect(fetchItems, [section, rerender]);
+    useEffect(fetchItems, [section, rerender, ip]);
 
     const handleRefresh = () => {
         fetchItems()

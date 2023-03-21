@@ -8,21 +8,25 @@ import './App.css'
 import { ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./Theme";
 import { PageContext } from "./PageContext";
+import { UrlContext } from "./UrlContext";
 
 function App() {
   const [theme, setTheme] = useState("light")
   const [page, setPage] = useState("groceries")
+  const ip = process.env.REACT_APP_IP;
   const muiTheme = theme === "light" ? lightTheme : darkTheme;
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={muiTheme}>
         <div>
-          <Navbar updatePage={setPage} />
-          <PageContext.Provider value={page}>
-            <Main />
-          </PageContext.Provider>
-          <Footer />
+          <UrlContext.Provider value={ip}>
+            <Navbar updatePage={setPage} />
+            <PageContext.Provider value={page}>
+              <Main />
+            </PageContext.Provider>
+            <Footer />
+          </UrlContext.Provider>
         </div>
       </ThemeProvider >
     </ThemeContext.Provider>

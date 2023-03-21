@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import Item from './Item'
 import axios from "axios"
 import List from '@mui/material/List';
+import { UrlContext } from '../UrlContext';
 
 const IngredientList = ({ recipe }) => {
     const [items, setItems] = useState([])
     const [sections, setSections] = useState([])
     const [ingredients, setIngredients] = useState([])
+    const ip = useContext(UrlContext)
 
     const fetchItems = () => {
-        axios.get("http://127.0.0.1:8000/api/item/")
+        axios.get(String(ip) + "api/item/")
             .then(response => {
                 setItems(response.data)
             })
@@ -17,7 +19,7 @@ const IngredientList = ({ recipe }) => {
                 console.log(error)
             });
 
-        axios.get("http://127.0.0.1:8000/api/section/")
+        axios.get(String(ip) + "api/section/")
             .then(response => {
                 setSections(response.data)
             })
@@ -26,7 +28,7 @@ const IngredientList = ({ recipe }) => {
             });
     }
 
-    useEffect(fetchItems, []);
+    useEffect(fetchItems, [ip]);
 
     const getItem = useCallback((id) => {
         for (let i = 0; i < items.length; i++) {

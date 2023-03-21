@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTheme, styled, Container, TextField, InputAdornment, List, ListItem, ListItemText } from '@mui/material'
 import { BsSearch } from 'react-icons/bs'
 import { TiBackspace } from 'react-icons/ti'
 import axios from "axios"
+import { UrlContext } from '../UrlContext';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
     backgroundColor: theme.palette.background.primary + " !important",
@@ -43,13 +44,14 @@ const SelectBar = ({ updateParentItemValue, updateParentSectionValue }) => {
     const [items, setItems] = useState([]);
     const [sections, setSections] = useState([]);
     const MuiTheme = useTheme();
+    const ip = useContext(UrlContext)
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/item/")
+        axios.get(String(ip) + "api/item/")
             .then(response => {
                 setItems(response.data)
             })
@@ -57,14 +59,14 @@ const SelectBar = ({ updateParentItemValue, updateParentSectionValue }) => {
                 console.log(error)
             });
 
-        axios.get("http://127.0.0.1:8000/api/section/")
+        axios.get(String(ip) + "api/section/")
             .then(response => {
                 setSections(response.data)
             })
             .catch(error => {
                 console.log(error)
             });
-    }, [])
+    }, [ip])
 
     useEffect(() => {
         const resultsTemp = []

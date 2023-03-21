@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Recipe from './Recipe'
 import axios from "axios"
+import { UrlContext } from '../UrlContext';
 
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([])
+  const ip = useContext(UrlContext)
 
   const fetchRecipes = () => {
-    axios.get("http://127.0.0.1:8000/api/recipe/")
+    axios.get(String(ip) + "api/recipe/")
       .then(response => {
         const recipeArr = response.data;
         recipeArr.sort((r1, r2) => {
@@ -30,7 +32,7 @@ const RecipeList = () => {
       });
   }
 
-  useEffect(fetchRecipes, []);
+  useEffect(fetchRecipes, [ip]);
 
   return (
     <>
