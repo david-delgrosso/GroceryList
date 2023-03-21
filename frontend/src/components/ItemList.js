@@ -7,7 +7,7 @@ import { RerenderContext } from '../RerenderContext'
 import { UrlContext } from '../UrlContext';
 import { useTheme } from '@mui/material'
 
-const ItemList = ({ section }) => {
+const ItemList = ({ section, updateNumItems }) => {
     const [items, setItems] = useState([])
     const rerender = useContext(RerenderContext)
     const ip = useContext(UrlContext)
@@ -43,6 +43,10 @@ const ItemList = ({ section }) => {
     }
 
     useEffect(fetchItems, [section, rerender, ip]);
+
+    useEffect(() => {
+        updateNumItems(items.length)
+    }, [items, updateNumItems])
 
     const handleRefresh = () => {
         fetchItems()

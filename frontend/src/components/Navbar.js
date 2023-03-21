@@ -99,10 +99,10 @@ function Navbar({ updatePage }) {
         updatePage("recipes")
     }
 
-    const handleManageItemsClick = () => {
-        toggleDrawer()
-        updatePage("manageitems")
-    }
+    // const handleManageItemsClick = () => {
+    //     toggleDrawer()
+    //     updatePage("manageitems")
+    // }
 
     // const handleAddRecipeClick = () => {
     //     toggleDrawer()
@@ -146,12 +146,12 @@ function Navbar({ updatePage }) {
                     <StyledMenuItem>
                         <StyledDrawerText onClick={handleRecipesClick}>Recipes</StyledDrawerText>
                     </StyledMenuItem>
-                    <StyledMenuItem>
+                    {/* <StyledMenuItem>
                         <StyledDrawerText onClick={handleManageItemsClick}>Manage Items</StyledDrawerText>
                     </StyledMenuItem>
                     <StyledMenuItem>
                         <StyledDrawerText>Manage Recipes</StyledDrawerText>
-                    </StyledMenuItem>
+                    </StyledMenuItem> */}
                 </List>
             </StyledDrawer>
 

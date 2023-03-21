@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ItemList from './ItemList'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -30,7 +30,12 @@ const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
 }))
 
 const Section = ({ section }) => {
+    const [numItems, setNumItems] = useState(0)
     const MuiTheme = useTheme();
+
+    const updateNumItems = (value) => {
+        setNumItems(value)
+    }
 
     return (
         <>
@@ -40,10 +45,10 @@ const Section = ({ section }) => {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typography>{section.name}</Typography>
+                    <Typography>{section.name} - {numItems}</Typography>
                 </StyledAccordionSummary>
                 <StyledAccordionDetails>
-                    <ItemList section={section} />
+                    <ItemList section={section} updateNumItems={updateNumItems} />
                 </StyledAccordionDetails>
             </Accordion>
         </>
