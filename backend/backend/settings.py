@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
-import dotenv # type:ignore
+import dotenv  # type:ignore
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,8 +32,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -46,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "groceryservice",
     "tokenservice",
-    "rest_framework"
+    "rest_framework",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -57,6 +57,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -84,13 +90,13 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ["RDS_DB_NAME"],
-        'USER': os.environ["RDS_USERNAME"],
-        'PASSWORD': os.environ["RDS_PASSWORD"],
-        'HOST': os.environ["RDS_HOSTNAME"],
-        'PORT': os.environ["RDS_PORT"],
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.environ["RDS_DB_NAME"],
+        "USER": os.environ["RDS_USERNAME"],
+        "PASSWORD": os.environ["RDS_PASSWORD"],
+        "HOST": os.environ["RDS_HOSTNAME"],
+        "PORT": os.environ["RDS_PORT"],
     }
 }
 

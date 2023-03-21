@@ -1,0 +1,49 @@
+[
+    {
+      "id": "0c10f3c6-088f-fc58-1561-6dfe941ffe97",
+      "name": "Produce",
+      "items": [
+        {
+          "id": "955c24ca-c89f-5f66-45cf-53afe2597ea2",
+          "name": "apples",
+          "need": true
+        },
+        {
+          "id": "15e00c4f-fa18-46fe-eefe-62d1789f9a50",
+          "name": "bananas",
+          "need": true
+        },
+        {
+          "id": "aa22f209-9def-03eb-f062-edb10515fb18",
+          "name": "broccoli",
+          "need": true
+        },
+        {
+          "id": "b0a52330-21c5-cb72-1378-5bfca9d6496f",
+          "name": "green onion",
+          "need": true
+        },
+        {
+          "id": "0c8d9d13-da6c-3133-fc3f-91dd93825138",
+          "name": "onion",
+          "need": true
+        },
+        {
+          "id": "06e5d3c5-a399-2f97-6651-39e5c062e0b0",
+          "name": "red onion",
+          "need": true
+        }
+      ]
+    },
+    {
+      "id": "c44b3609-65a7-329e-d7d7-aec6d207533a",
+      "name": "Meat",
+      "items": [
+        {
+          "id": "4b7160e2-cfaa-c534-bb50-d3342dde96db",
+          "name": "chicken",
+          "need": true
+        }
+      ]
+    }
+  ]

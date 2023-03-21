@@ -1,10 +1,8 @@
-from rest_framework import generics, status
+from rest_framework import generics
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
-from rest_framework.response import Response
-from rest_framework.request import Request
 
-from .models import Section, Item
-from .serializers import SectionSerializer, ItemSerializer
+from .models import Section, Item, Recipe
+from .serializers import SectionSerializer, ItemSerializer, RecipeSerializer
 
 
 class SectionCRUDView(
@@ -48,5 +46,22 @@ class ItemsListView(generics.ListAPIView):
 
     def get_queryset(self):
         section_id = self.request.query_params.get("id")
-        queryset = Item.objects.filter(section=section_id)
+        queryset = Item.objects.filter(section=section_id).filter(need=True)
         return queryset
+
+class RecipeCRUDView(
+    CreateModelMixin, ListModelMixin, generics.RetrieveUpdateDestroyAPIView
+):
+    serializer_class = RecipeSerializer
+    lookup_field = "id"
+    queryset = Recipe.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return (
+            self.retrieve(request, *args, **kwargs)
+            if "id" in kwargs
+            else self.list(request, *args, **kwargs)
+        )
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
